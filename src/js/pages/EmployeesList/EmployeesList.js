@@ -12,7 +12,7 @@ const mapStateToProps = state => {
   const { employees } = state;
   console.log('antes:', employees);
   return {
-    employees: [employees],
+    employees,
   };
 };
 const actions = { ...employeesActions };
@@ -48,7 +48,7 @@ class EmployeesList extends Component {
     let id = '';
     let details = '';
     let employeeInfo = '';
-    const theEmployees = this.props.employees[0].employees;
+    const theEmployees = this.props.employees.employees;
     console.log('theEmployees: ', theEmployees.employees);
     if (this.state.employeeId) {
       id = this.state.employeeId;
