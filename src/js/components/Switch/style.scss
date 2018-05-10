@@ -1,0 +1,81 @@
+.switch {
+  display: inline-block;
+  border-radius: 14px;
+  background-color: $base-gray;
+  width: 34px;
+  height: 14px;
+
+  label {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    width: 34px;
+    height: 14px;
+  }
+
+  .switch-button {
+    display: inline-block;
+    position: absolute;
+    top: -3px;
+    left: -1px;
+    transition: left .3s ease, background-color .2s ease;
+    border-radius: 50%;
+    background-color: $dark-gray;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+
+  &.active {
+    .switch-button {
+      left: 17px;
+      background-color: $primary-color;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.single-switch {
+  $shadow-color: rgba(0, 0, 0, .1);
+  $active-bg: rgba($primary-color, .5);
+
+  vertical-align: middle;
+
+  .switch {
+    width: 42px;
+    height: 18px;
+
+    .switch-button {
+      top: -3px;
+      left: -6px;
+      box-shadow: 0 6px 16px 0 $shadow-color;
+      width: 25px;
+      height: 25px;
+    }
+
+    &.active {
+      background-color: $active-bg;
+
+      .switch-button {
+        left: 24px;
+      }
+    }
+  }
+
+  .prefix-text {
+    display: inline-block;
+    margin-right: 1em;
+    font-size: .9em;
+  }
+
+  .suffix-text {
+    display: inline-block;
+    margin-left: 1em;
+    font-size: .9em;
+  }
+}

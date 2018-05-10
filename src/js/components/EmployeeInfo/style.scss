@@ -1,0 +1,67 @@
+.container {
+  float: left;
+  margin: auto;
+  border-radius: 4px;
+  padding: 9px;
+  width: 280px;
+  height: auto;
+
+  header {
+    margin-bottom: 5px;
+    border: 2px solid $base-gray;
+    padding: 5px;
+    height: 30px;
+    text-align: center;
+  }
+
+  .employees {
+    border: 1px solid $base-gray;
+    border-radius: 4px;
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+
+    .first-block {
+      border-bottom: 1px solid $base-gray;
+      padding: 10px;
+      height: 90px;
+
+      .img-container {
+        img {
+          float: left;
+          width: 70px;
+          height: 70px;
+        }
+      }
+
+      .data-container {
+        float: left;
+        padding-top: 20px;
+        padding-left: 9px;
+
+        .position {
+          color: $base-gray;
+        }
+      }
+    }
+
+    .phone-block {
+      border-bottom: 1px solid $base-gray;
+      padding: 10px;
+      height: 60px;
+
+      .phone {
+        color: $base-gray;
+      }
+    }
+
+    .email-block {
+      padding: 10px;
+      height: 60px;
+
+      .email {
+        color: $base-gray;
+      }
+    }
+  }
+}
+
+//https://askubuntu.com/questions/508934/how-to-install-libpng-and-zlib

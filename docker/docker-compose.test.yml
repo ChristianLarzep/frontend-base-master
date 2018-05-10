@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  web-app:
+    container_name: web_app_test
+    environment:
+      NODE_ENV: test
+    volumes:
+      - ../test_failure_screenshots:/var/lib/app/test_failure_screenshots
+      - ../test_logs:/var/lib/app/test_logs
+    command: "sleep infinity"
+    entrypoint: /home/docker/startup.test.sh

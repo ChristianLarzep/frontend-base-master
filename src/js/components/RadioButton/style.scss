@@ -1,0 +1,65 @@
+.radio {
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  .radio-button {
+    display: inline-block;
+    transition: border-color .2s ease;
+    margin: 0 5px;
+    border: 2px solid $base-gray;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      transform: scale(0);
+      transition: opacity .2s ease, transform .2s ease;
+      opacity: 0;
+      border-radius: 50%;
+      background-color: $primary-color;
+      width: 12px;
+      height: 12px;
+      content: '';
+    }
+
+    &:hover,
+    &.active {
+      border-color: $primary-color;
+    }
+
+    &.active {
+      &::before {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  }
+
+  &.disabled {
+    .radio-button {
+      opacity: .6;
+      cursor: not-allowed;
+
+      &:hover {
+        border-color: $base-gray;
+      }
+
+      &.active {
+        border-color: $primary-color;
+      }
+    }
+  }
+}

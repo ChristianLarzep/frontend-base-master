@@ -1,0 +1,45 @@
+.app-container {
+  background-color: $body-bg;
+  padding: 1em;
+
+  h3 {
+    margin-top: 20px;
+    border-bottom: 1px solid $black-gray;
+    border-width: medium;
+  }
+
+  h4 {
+    margin-top: 20px;
+    border-bottom: 1px solid $lightest-gray;
+    border-width: thin;
+  }
+
+  .base-gray {
+    color: $base-gray;
+  }
+
+  .dark-gray {
+    color: $dark-gray;
+  }
+
+  .darker-gray {
+    color: $darker-gray;
+  }
+
+  .black-gray {
+    color: $black-gray;
+  }
+
+  .light-gray {
+    color: $light-gray;
+  }
+
+  .lighter-gray {
+    color: $lighter-gray;
+  }
+
+  .lightest-gray {
+    color: $lightest-gray;
+  }
+
+}

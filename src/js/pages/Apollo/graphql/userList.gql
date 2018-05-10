@@ -1,0 +1,9 @@
+query userList {
+  users {
+    nodes {
+      id
+      name
+      email
+    }
+  }
+}

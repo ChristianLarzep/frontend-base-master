@@ -1,0 +1,128 @@
+@mixin button-variant($btn-color, $color, $border-color: transparent) {
+  border-color: $border-color;
+  background-color: $btn-color;
+  color: $color;
+
+  &:hover,
+  &:focus,
+  &.focus {
+    background-color: darken($btn-color, 30%);
+    text-decoration: none;
+    color: $color;
+  }
+
+  &:active {
+    box-shadow: 0 0 4px 0 $btn-color;
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-block;
+  transition: background-color 0.2s ease, color 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 10px;
+  outline: 0;
+  border: solid 2px transparent;
+  border-radius: $button-border-radius;
+  background-color: $primary-color;
+  background-image: none;
+  cursor: pointer;
+  padding: 0 20px;
+  min-width: 100px;
+  height: $button-height;
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+  color: $white;
+  font-size: $button-font-size;
+  font-weight: 300;
+  touch-action: manipulation;
+  box-sizing: border-box;
+
+  &:hover,
+  &:focus,
+  &.focus {
+    background-color: darken($darker-gray, 10%);
+    text-decoration: none;
+  }
+
+  &.block {
+    width: 100%;
+  }
+
+  &[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .spinner {
+    display: inline-block;
+    animation: spinner 0.8s infinite linear;
+    opacity: 0.8;
+    border: 4px solid $white;
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+a {
+  &.btn {
+    line-height: $button-height - 2;
+
+    &:visited {
+      color: $white;
+    }
+  }
+}
+
+.btn-primary {
+  @include button-variant($primary-color, $white);
+}
+
+.btn-alt-primary {
+  @include button-variant(transparent, $primary-color, $primary-color);
+}
+
+.btn-info {
+  @include button-variant($info-color, $white);
+}
+
+.btn-success {
+  @include button-variant($success-color, $white);
+}
+
+.btn-warning {
+  @include button-variant($warning-color, $white);
+}
+
+.btn-error {
+  @include button-variant($error-color, $white);
+}
+
+.btn-salmon {
+  @include button-variant($salmon-color, $white);
+}
+
+.btn-unstyled {
+  @include button-variant(transparent, $text-color);
+  text-transform: none;
+  font-size: $font-size;
+}

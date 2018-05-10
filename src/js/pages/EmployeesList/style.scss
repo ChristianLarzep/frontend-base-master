@@ -1,0 +1,19 @@
+.whole {
+  padding-top: 40px;
+
+  .container {
+    margin: auto;
+    border: 1px solid $base-gray;
+    padding: 3px;
+    width: 565px;
+    height: 457px;
+    overflow-y: auto;
+
+    .employeeslist {
+      float: left;
+      border: 1px solid $base-gray;
+      padding: 3px;
+      width: 258px;
+    }
+  }
+}

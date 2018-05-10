@@ -1,0 +1,98 @@
+.login-content {
+  border: 1px solid $lighter-gray;
+  background-color: $lighter-gray;
+  padding-top: 70px;
+  min-width: 480px;
+
+  .table-bg-a {
+    margin: auto;
+    margin-bottom: 114px;
+    border-radius: 5px;
+    background-color: $white;
+    padding: 40px 100px 48px;
+    max-width: 570px;
+  }
+
+  header {
+    text-align: center;
+
+    .cognizant {
+      padding-top: 41px;
+      text-align: center;
+      color: $darker-gray;
+      font-family: Montserrat;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .qinsight {
+      color: $primary-color;
+      font-family: Montserrat;
+    }
+
+    .welcome-to-qinisight {
+      color: $darker-gray;
+      font-family: Montserrat;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .please-enter-you-inf {
+      color: $darker-gray;
+      font-family: Lato;
+    }
+  }
+
+  .formlogin {
+    margin-top: 44px;
+    text-align: center;
+
+    form {
+      footer {
+        .please-accept-terms {
+          margin-top: 15px;
+          color: $error-color;
+          font-family: Lato;
+        }
+        .warning-terms-hidden {
+          display: none;
+        }
+
+        .submit-login {
+          margin-top: 15px;
+          cursor: pointer;
+          width: 170px;
+          color: $white;
+          font-family: Montserrat;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $screen-xs) {
+  .login-content {
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+    overflow-x: hidden;
+
+    .table-bg-a {
+      margin-bottom: 0;
+      border-radius: 0;
+      padding: 40px 40px 48px;
+
+      span {
+        padding: inherit;
+      }
+
+      a {
+        margin-left: -35px;
+      }
+
+      .formlogin {
+        padding: inherit;
+      }
+    }
+  }
+}

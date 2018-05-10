@@ -1,0 +1,65 @@
+/*@import '~susy/sass/susy';*/
+$columns: 12;
+$susy: (
+  math: fluid,
+  output: float,
+  gutter-position: after,
+  container: 1200px,
+  columns: 12,
+  gutters: 0.45,
+  global-box-sizing: border-box
+);
+
+$body-bg: #fff;
+$white: #fff;
+$black: #3a3a3a;
+
+$primary-color: #f68922;
+$info-color: #0491f3;
+$info-color-alt: #00cbda;
+$success-color: #3fc7f4;
+$warning-color: #ff8c25;
+$warning-color-alt: #ffad2b;
+$error-color: #e3283e;
+$salmon-color: #ff7372;
+
+$primary-color-hover: #421468;
+
+$base-gray: #58595b;
+$dark-gray: #707e8e;
+$darker-gray: #4b637b;
+$black-gray: #3a3a3a;
+$light-gray: #e8edf4;
+$lighter-gray: #f2f6fa;
+$lightest-gray: #f9fafc;
+
+$ui-border: $base-gray;
+$shadow: rgba(0, 0, 0, 0.1);
+
+$font-family: 'Helvetica', sans-serif;
+$font-size: 14px;
+$font-size-small: 12px;
+$font-size-tiny: 10px;
+$text-color: $dark-gray;
+$font-weight-bold: 600;
+
+$title-color: $darker-gray;
+$title-color-alt: $primary-color;
+$title-font-family: $font-family;
+$title-font-weight: 300;
+
+$button-font-size: 13px;
+$button-border-radius: 0px;
+$button-height: 45px;
+
+$select-font-size: 13px;
+$select-border-radius: 10px;
+$select-height: 45px;
+$select-width: 180px;
+
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-lg: 1024px;
+$screen-xl: 1280px;
+
+$transition-speed: 0.2s;

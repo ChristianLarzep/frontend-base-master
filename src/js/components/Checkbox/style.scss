@@ -1,0 +1,81 @@
+.checkbox {
+  padding-top: 5px;
+
+  input {
+    display: none;
+  }
+
+  span {
+    cursor: pointer;
+    vertical-align: middle;
+  }
+
+  a {
+    cursor: pointer;
+    text-decoration: underline;
+    color: $primary-color;
+    font-family: Lato;
+  }
+  @media screen and (max-width: $screen-xs) {
+    a {
+      padding-left: 35px;
+    }
+  }
+
+  .checkbox-button {
+    display: inline-block;
+    transition: border-color 0.2s ease;
+    margin: 0 5px;
+    border: 1px solid $base-gray;
+    cursor: pointer;
+    width: 15.5px;
+    height: 15.5px;
+    vertical-align: middle;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      transform: scale(0);
+      transition: opacity 0.2s ease, transform 0.3s ease, border-radius 0.3s ease;
+      opacity: 0;
+      border-radius: 20px;
+      background-color: $primary-color;
+      background-image: url('./assets/checkbox-arrow.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 20px;
+      height: 20px;
+      content: '';
+    }
+
+    &:hover,
+    &.active {
+      border-color: $primary-color;
+    }
+
+    &.active {
+      &::before {
+        transform: scale(1);
+        opacity: 1;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  &.disabled {
+    .radio-button {
+      opacity: 0.6;
+      cursor: not-allowed;
+
+      &:hover {
+        border-color: $base-gray;
+      }
+
+      &.active {
+        border-color: $primary-color;
+      }
+    }
+  }
+}

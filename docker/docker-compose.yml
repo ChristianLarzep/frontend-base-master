@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  selenium:
+    container_name: web_app_selenium
+    image: yukinying/chrome-headless-browser-selenium
+    ports:
+      - "4444:4444"
+    cap_add:
+      - SYS_ADMIN
+    shm_size: 1024m
+    networks:
+      - backendbase_agavelab
+  web-app:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    image: agavelab/frontendbase-app
+    container_name: web_app
+    environment:
+      NODE_ENV: "${NODE_ENV}"
+      API_HOST: http://api:3000/
+      API_HOST_NAME: api
+      API_HOST_PORT: 3000
+    ports:
+      - "8080:80"
+    labels:
+      container_group: service
+    networks:
+      - backendbase_agavelab
+networks:
+  backendbase_agavelab:
+    external: true
