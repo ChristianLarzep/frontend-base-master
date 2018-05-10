@@ -6,7 +6,7 @@
     border: 1px solid $base-gray;
     padding: 3px;
     width: 565px;
-    height: 457px;
+    height: 493px;
     overflow-y: auto;
 
     .employeeslist {
@@ -14,6 +14,15 @@
       border: 1px solid $base-gray;
       padding: 3px;
       width: 258px;
+
+      .add-button {
+        padding-left: 45px;
+        padding-top: 15px;
+        button {
+          border-radius: 4px;
+          height: 30px;
+        }
+      }
     }
   }
 }

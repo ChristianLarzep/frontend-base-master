@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Employee, EmployeeInfo } from '../../components';
+import { Employee, EmployeeInfo, Button } from '../../components';
 
 import * as employeesActions from './store/actions/employees';
 import img from './empty.png';
@@ -10,7 +10,7 @@ import './style.scss';
 
 const mapStateToProps = state => {
   const { employees } = state;
-  console.log('antes:', employees);
+
   return {
     employees,
   };
@@ -36,23 +36,29 @@ class EmployeesList extends Component {
       email: 'karla@hotmail.com',
     };
 
-    console.log(added);
     this.props.addEmployee(added);
   };
+
+  delete = id => {
+    this.props.deleteEmployee(id);
+    this.setState({ employeeId: null });
+  };
+
   employeeSelected = id => {
     this.setState({
       employeeId: id,
     });
   };
+
   render() {
     let id = '';
     let details = '';
     let employeeInfo = '';
     const theEmployees = this.props.employees.employees;
-    console.log('theEmployees: ', theEmployees.employees);
+
     if (this.state.employeeId) {
       id = this.state.employeeId;
-      details = theEmployees.filter(content => content.id === id)[0];
+      details = theEmployees.find(content => content.id === id);
 
       employeeInfo = (
         <EmployeeInfo
@@ -62,9 +68,11 @@ class EmployeesList extends Component {
           img={details.img}
           phone={details.phone}
           email={details.email}
+          onClick={() => this.delete(details.id)}
         />
       );
     }
+
     const employees = theEmployees.map(content => (
       <Employee
         key={content.id}
@@ -82,8 +90,10 @@ class EmployeesList extends Component {
         <div styleName="container">
           <div styleName="employeeslist">
             {employees}
-            <div>
-              <button onClick={() => this.adding()}>Add Employee</button>
+            <div styleName="add-button">
+              <Button disabled={false} color="primary" type="submit" onClick={() => this.adding()}>
+                Add Employee
+              </Button>
             </div>
           </div>
           <div>{employeeInfo}</div>

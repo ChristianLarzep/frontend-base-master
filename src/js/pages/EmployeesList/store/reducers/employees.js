@@ -1,7 +1,7 @@
 import { types } from '../actions/employees';
 import img from '../../empty.png';
 
-const { ADD_EMPLOYEES, GET_EMPLOYEES, ADD_EMPLOYEES_SUCCESS, ADD_EMPLOYEES_FAIL } = types;
+const { ADD_EMPLOYEES, DELETE_EMPLOYEE, GET_EMPLOYEES, ADD_EMPLOYEES_SUCCESS, ADD_EMPLOYEES_FAIL } = types;
 
 const defaultEmployees = {
   success: false,
@@ -57,9 +57,9 @@ const defaultState = {
     },
   ],
 };
-
+export const getEmployeesState = (employeeName, state) => state.employees[employeeName] || defaultEmployees;
 export default (state = defaultState, action) => {
-  const { employee, error, result } = action;
+  const { employeeId, employee, error, result } = action;
   const newState = { ...state };
 
   switch (action.type) {
@@ -74,6 +74,15 @@ export default (state = defaultState, action) => {
         employees: [...newState.employees, employee],
       });
       break;
+
+    case DELETE_EMPLOYEE: {
+      const arr = newState.employees.filter(content => content.id !== employeeId);
+      console.log(employeeId, arr);
+      Object.assign(newState, {
+        employees: [...arr],
+      });
+      break;
+    }
     case ADD_EMPLOYEES_SUCCESS:
       Object.assign(newState, {
         success: true,

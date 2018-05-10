@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Button } from '../';
+
 import imageSrc from './empty.png';
 
 import './style.scss';
 
 function EmployeeInfo(props) {
-  const { email, name, position, img, phone } = props;
+  const { email, name, position, img, phone, ...others } = props;
   return (
     <div styleName="container">
       <header>Employee</header>
@@ -29,6 +31,9 @@ function EmployeeInfo(props) {
           <div styleName="email">{email}</div>
         </div>
       </div>
+      <Button disabled={false} color="primary" type="submit" {...others}>
+        Delete
+      </Button>
     </div>
   );
 }
