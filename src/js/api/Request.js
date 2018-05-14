@@ -30,6 +30,7 @@ function handleError(body) {
 function connection(type, endpoint, data) {
   const { attach, headers, ...others } = data || {};
   const params = { ...others };
+  console.log('muere');
   const req = request(type, config.apiHost + endpoint);
 
   Object.keys(params).forEach(key => params[key] === null && delete params[key]);

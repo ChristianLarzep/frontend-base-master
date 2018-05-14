@@ -1,5 +1,6 @@
 import { types } from '../actions/employees';
 import img from '../../empty.png';
+import { feedQuery } from '../../EmployeesList';
 
 const { ADD_EMPLOYEES, DELETE_EMPLOYEE, GET_EMPLOYEES, ADD_EMPLOYEES_SUCCESS, ADD_EMPLOYEES_FAIL } = types;
 
@@ -9,63 +10,16 @@ const defaultEmployees = {
   error: null,
 };
 
-const defaultState = {
-  employees: [
-    {
-      key: 1,
-      id: 1,
-      name: 'Roberto Diaz',
-      position: 'Cajero',
-      imagen: img,
-    },
-    { key: 7, id: 7 },
-    {
-      key: 2,
-      id: 2,
-      name: 'Carlos Hernandez',
-      position: 'CEO',
-      imagen: img,
-      phone: '23234545',
-      email: 'carlos@hotmail.com',
-    },
-    {
-      key: 3,
-      id: 3,
-      name: 'Karla Martinez',
-      position: 'Recepcionista',
-      imagen: img,
-      phone: '23456567',
-      email: 'karla@hotmail.com',
-    },
-    {
-      key: 4,
-      id: 4,
-      name: 'Maria Lopez',
-      position: 'Cajera',
-      imagen: img,
-      phone: '76787654',
-      email: 'maria@live.com',
-    },
-    {
-      key: 5,
-      id: 5,
-      name: 'Marlon Jerome',
-      position: 'Gerente',
-      imagen: img,
-      phone: '23435465',
-      email: 'marlon@live.com',
-    },
-  ],
-};
+const defaultState = {};
 export const getEmployeesState = (employeeName, state) => state.employees[employeeName] || defaultEmployees;
 export default (state = defaultState, action) => {
-  const { employeeId, employee, error, result } = action;
+  const { employeeId, data, employee, error, result } = action;
   const newState = { ...state };
 
   switch (action.type) {
     case GET_EMPLOYEES:
       Object.assign(newState, {
-        ...defaultEmployees,
+        ...data,
         getEmployees: true,
       });
       break;
@@ -76,10 +30,9 @@ export default (state = defaultState, action) => {
       break;
 
     case DELETE_EMPLOYEE: {
-      const arr = newState.employees.filter(content => content.id !== employeeId);
-      console.log(employeeId, arr);
+      const newlist = newState.employees.filter(content => content.id !== employeeId);
       Object.assign(newState, {
-        employees: [...arr],
+        employees: [...newlist],
       });
       break;
     }

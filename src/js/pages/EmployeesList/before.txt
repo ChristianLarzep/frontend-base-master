@@ -1,0 +1,287 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+
+import { Employee, EmployeeInfo, Button } from '../../components';
+
+import * as employeesActions from './store/actions/employees';
+import img from './empty.png';
+
+import './style.scss';
+
+const mapStateToProps = state => {
+  const { employees } = state;
+
+  return {
+    employees,
+  };
+};
+
+const ExchangeRates = () => (
+  <Query
+    query={gql`
+      {
+        allEmployees {
+          name
+          position
+          image
+          phone
+          email
+        }
+      }
+    `}
+  >
+    {({ loading, error, data }) => {
+      if (loading) return <p>Loading...</p>;
+      if (error) return <p>Error :(</p>;
+
+      return data.allEmployees.map(({ id, name, position, image, phone, email }) => (
+        <div key={phone}>
+          <p>{`Name: ${name} Position: ${position}  Image: ${image}  Phone: ${phone} Email: ${email}`}</p>
+        </div>
+      ));
+    }}
+  </Query>
+);
+
+const actions = { ...employeesActions };
+
+@connect(mapStateToProps, actions)
+class EmployeesList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      employeeId: null,
+    };
+  }
+  adding = () => {
+    const added = {
+      id: 10,
+      name: 'Karla Martinez',
+      position: 'Recepcionista',
+      imagen: img,
+      phone: '23456567',
+      email: 'karla@hotmail.com',
+    };
+
+    this.props.addEmployee(added);
+  };
+
+  delete = id => {
+    this.props.deleteEmployee(id);
+    this.setState({ employeeId: null });
+  };
+
+  employeeSelected = id => {
+    this.setState({
+      employeeId: id,
+    });
+  };
+
+  render() {
+    let employeeInfo = '';
+    const theEmployees = this.props.employees.employees;
+
+    if (this.state.employeeId) {
+      let details = '';
+      details = theEmployees.find(content => content.id === this.state.employeeId);
+
+      employeeInfo = (
+        <EmployeeInfo
+          key={details.id}
+          name={details.name}
+          position={details.position}
+          img={details.img}
+          phone={details.phone}
+          email={details.email}
+          onClick={() => this.delete(details.id)}
+        />
+      );
+    }
+
+    return (
+      <div styleName="whole">
+        <div styleName="container">
+          <div styleName="employeeslist">
+            {theEmployees.map(content => (
+              <Employee
+                key={content.id}
+                id={content.id}
+                name={content.name}
+                position={content.position}
+                img={content.imagen}
+                className="field"
+                onClick={() => this.employeeSelected(content.id)}
+              />
+            ))}
+            <div styleName="add-button">
+              <Button
+                disabled={false}
+                spinner={theEmployees.loading}
+                color="primary"
+                type="submit"
+                onClick={() => this.adding()}
+              >
+                Add Employee
+              </Button>
+            </div>
+          </div>
+          <div>{employeeInfo}</div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default EmployeesList;
+
+
+
+
+/_----------------------
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Query,ApolloProvider } from 'react-apollo';
+import gql from 'graphql-tag';
+
+import { Employee, EmployeeInfo, Button } from '../../components';
+
+import * as employeesActions from './store/actions/employees';
+import img from './empty.png';
+
+import './style.scss';
+
+const mapStateToProps = state => {
+  const { employees } = state;
+
+  return {
+    employees,
+  };
+};
+const GET_EMPLOYEES = gql`
+  {
+    allEmployees {
+      name
+      position
+      image
+      phone
+      email
+    }
+  }
+`;
+
+const actions = { ...employeesActions };
+
+@connect(mapStateToProps, actions)
+class EmployeesList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      employeeId: null,
+    };
+  }
+  adding = () => {
+    const added = {
+      id: 10,
+      name: 'Karla Martinez',
+      position: 'Recepcionista',
+      imagen: img,
+      phone: '23456567',
+      email: 'karla@hotmail.com',
+    };
+
+    this.props.addEmployee(added);
+  };
+
+  delete = id => {
+    this.props.deleteEmployee(id);
+    this.setState({ employeeId: null });
+  };
+
+  employeeSelected = id => {
+    this.setState({
+      employeeId: id,
+    });
+  };
+
+  render() {
+    let employeeInfo = '';
+    const theEmployees = this.props.employees.employees;
+
+    if (this.state.employeeId) {
+      let details = '';
+      details = theEmployees.find(content => content.id === this.state.employeeId);
+
+      employeeInfo = (
+        <EmployeeInfo
+          key={details.id}
+          name={details.name}
+          position={details.position}
+          img={details.img}
+          phone={details.phone}
+          email={details.email}
+          onClick={() => this.delete(details.id)}
+        />
+      );
+    }
+
+    return (
+      <div styleName="whole">
+        <div styleName="container">
+          <div styleName="employeeslist">
+            <div>
+              <Query
+                query={gql`
+                  {
+                    allEmployees {
+                      name
+                      position
+                      image
+                      phone
+                      email
+                    }
+                  }
+                `}
+              >
+                {({ loading, error, data }) => {
+                  if (loading) return <p>Loading...</p>;
+                  if (error) return <p>Error :(</p>;
+
+                  return data.allEmployees.map(({ id, name, position, image, phone, email }) => (
+                    <div key={phone}>
+                      <p>{`Name: ${name} Position: ${position}  Image: ${image}  Phone: ${phone} Email: ${email}`}</p>
+                    </div>
+                  ));
+                }}
+              </Query>
+            </div>
+
+            <div styleName="add-button">
+              <Button
+                disabled={false}
+                spinner={theEmployees.loading}
+                color="primary"
+                type="submit"
+                onClick={() => this.adding()}
+              >
+                Add Employee
+              </Button>
+            </div>
+          </div>
+          <div>{employeeInfo}</div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default EmployeesList;
+
+
+
+
+
+

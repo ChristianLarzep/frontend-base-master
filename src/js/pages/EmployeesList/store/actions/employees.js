@@ -5,7 +5,6 @@ export const types = createTypes('app/employees/', async('ADD_EMPLOYEES'), 'GET_
 const employeesActionTypes = [types.ADD_EMPLOYEES_SUCCESS, types.ADD_EMPLOYEES_FAIL];
 
 export const addEmployee = employee => {
-  console.log(employee);
   return {
     types: [types.ADD_EMPLOYEES, types.ADD_EMPLOYEES_SUCCESS, types.ADD_EMPLOYEES_FAIL],
     promise: () => Promise.resolve(employee),
@@ -15,14 +14,17 @@ export const addEmployee = employee => {
 
 export const deleteEmployee = employeeId => dispatch => {
   dispatch({
-    type: types.DELETE_EMPLOYEE,
+    types: [types.DELETE_EMPLOYEE, types.ADD_EMPLOYEES_SUCCESS, types.ADD_EMPLOYEES_FAIL],
+    promise: () => Promise.resolve(employeeId),
     employeeId,
   });
 };
 
-export const getEmployees = () => dispatch => {
+export const getEmployees = data => dispatch => {
+  console.log('thedata: ', data);
   dispatch({
     type: types.GET_EMPLOYEES,
+    data,
   });
 };
 

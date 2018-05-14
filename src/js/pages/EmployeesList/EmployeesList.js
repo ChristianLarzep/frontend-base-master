@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Query, ApolloProvider, graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import { Employee, EmployeeInfo, Button } from '../../components';
 
@@ -15,6 +17,19 @@ const mapStateToProps = state => {
     employees,
   };
 };
+const GET_EMPLOYEES = gql`
+  {
+    allEmployees {
+      id
+      name
+      position
+      image
+      phone
+      email
+    }
+  }
+`;
+
 const actions = { ...employeesActions };
 
 @connect(mapStateToProps, actions)
@@ -45,53 +60,52 @@ class EmployeesList extends Component {
   };
 
   employeeSelected = id => {
-    this.setState({
-      employeeId: id,
-    });
+    // this.setState({
+    //  employeeId: id,
+    // });
   };
 
   render() {
-    let id = '';
-    let details = '';
-    let employeeInfo = '';
+    const employeeInfo = '';
     const theEmployees = this.props.employees.employees;
 
     if (this.state.employeeId) {
-      id = this.state.employeeId;
-      details = theEmployees.find(content => content.id === id);
-
-      employeeInfo = (
-        <EmployeeInfo
-          key={details.id}
-          name={details.name}
-          position={details.position}
-          img={details.img}
-          phone={details.phone}
-          email={details.email}
-          onClick={() => this.delete(details.id)}
-        />
-      );
+      let details = '';
+      details = theEmployees.find(content => content.id === this.state.employeeId);
     }
 
-    const employees = theEmployees.map(content => (
-      <Employee
-        key={content.id}
-        id={content.id}
-        name={content.name}
-        position={content.position}
-        img={content.imagen}
-        className="field"
-        onClick={() => this.employeeSelected(content.id)}
-      />
-    ));
+    if (this.props.feedQuery && this.props.feedQuery.loading) {
+      return <div>Loading</div>;
+    }
+
+    // 2
+    if (this.props.feedQuery && this.props.feedQuery.error) {
+      return <div>Error</div>;
+    }
+
+    // 3
+    const linksToRender = this.props.feedQuery.allEmployees;
 
     return (
       <div styleName="whole">
         <div styleName="container">
           <div styleName="employeeslist">
-            {employees}
+            <div>
+              {linksToRender.map(({ id, name, position, image, phone, email }) => (
+                <Employee
+                  key={id}
+                  id={id}
+                  name={name}
+                  position={position}
+                  img={img}
+                  className="field"
+                  onClick={() => this.employeeSelected(id)}
+                />
+              ))}
+            </div>
+
             <div styleName="add-button">
-              <Button disabled={false} color="primary" type="submit" onClick={() => this.adding()}>
+              <Button disabled={false} spinner={false} color="primary" type="submit" onClick={() => this.adding()}>
                 Add Employee
               </Button>
             </div>
@@ -102,5 +116,6 @@ class EmployeesList extends Component {
     );
   }
 }
+export default graphql(GET_EMPLOYEES, { name: 'feedQuery' })(EmployeesList);
 
-export default EmployeesList;
+// la url del servidor graphql se añade en src/js/config.js     graphql: 'https://api.graph.cool/simple/v1/cjh2lhpn34irb0106mrjkgsbg',
