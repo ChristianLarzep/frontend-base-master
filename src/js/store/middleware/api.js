@@ -10,8 +10,6 @@ export default ({ dispatch, getState }) => next => action => {
 
   const { promise, types, redirect, ...rest } = action;
 
-  console.log('promise', promise);
-
   if (!promise) {
     return next(action);
   }

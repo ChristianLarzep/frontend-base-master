@@ -7,19 +7,13 @@ export const constraints = {
       minimum: 8,
     },
   },
-  password: {
-    presence: true,
-    length: {
-      minimum: 8,
-    },
-  },
-  security_question: {
+  position: {
     presence: true,
   },
-  security_answer: {
+  phone: {
     presence: true,
   },
-  terms: {
+  email: {
     presence: true,
   },
 };

@@ -9,7 +9,6 @@ import validate from 'validate.js';
 */
 
 validate.validators.strongPassword = (value = '', opc = { minimum: 8 }) => {
-  console.log('Entra');
   const isValid = new RegExp('/^[a-zA-Z0-9,!@#$%^&*)(+=._-]+$/i').test(value);
   if (isValid && value.length >= opc.minimum) {
     return null;

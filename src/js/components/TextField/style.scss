@@ -15,8 +15,8 @@
 
 .input-container {
   display: block;
-
   label {
+    margin-top: 1em;
     display: block;
     text-transform: uppercase;
   }
@@ -38,7 +38,7 @@
 
 .input-group {
   display: block;
-  margin-bottom: 1em;
+  margin-bottom: 0;
   width: 100%;
   border-collapse: separate;
 

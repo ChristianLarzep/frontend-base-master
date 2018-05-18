@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Employee } from '../';
 
-import img from './empty.png';
-
 import './style.scss';
 
 function ListEmployees(props) {
-  const { getEmployees } = props;
+  const { getEmployees, onClick } = props;
   if (getEmployees && getEmployees.loading) {
     return <div>Loading</div>;
   }
@@ -21,25 +19,26 @@ function ListEmployees(props) {
 
   return (
     <div>
-      {allEmployees
-        .slice(0)
-        .reverse()
-        .map(({ id, name, position }) => (
-          <Employee
-            key={id}
-            id={id}
-            name={name}
-            position={position}
-            img={img}
-            className="field"
-            onClick={() => props.onClick(id)}
-          />
-        ))}
+      {allEmployees.map(({ id, name, position, image }) => (
+        <Employee
+          key={id}
+          id={id}
+          name={name}
+          position={position}
+          img={image}
+          className="field"
+          onClick={() => onClick(id)}
+        />
+      ))}
     </div>
   );
 }
 ListEmployees.propTypes = {
-  getEmployees: PropTypes.object,
+  getEmployees: PropTypes.shape({
+    allEmployees: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+    })),
+  }),
   onClick: PropTypes.func,
 };
 

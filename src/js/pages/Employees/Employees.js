@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { graphql, withApollo } from 'react-apollo';
 import PropTypes from 'prop-types';
+import { reduxForm, Form } from 'redux-form';
 
 import { AddEmployee, ListEmployees, EmployeeInfo } from './components';
-import img from './empty.png';
 import * as employeesActions from './store/actions/employees';
 import * as queries from './graphql';
+import validator from './validator';
 
 import './style.scss';
 
@@ -27,13 +28,32 @@ const { DELETE, GET_EMPLOYEES, SEARCH_EMPLOYEE, ADD_EMPLOYEE } = queries;
 @graphql(DELETE, { name: 'delete' })
 @graphql(ADD_EMPLOYEE, { name: 'Adding' })
 @connect(mapStateToProps, actions)
+@reduxForm({ form: 'form_login', validate: validator })
 class Employees extends Component {
-  propTypes = {
+  static propTypes = {
     Adding: PropTypes.func,
-    client: PropTypes.func,
+    client: PropTypes.shape({
+      id: PropTypes.ID,
+      name: PropTypes.string,
+      position: PropTypes.String,
+      image: PropTypes.String,
+      phone: PropTypes.String,
+      email: PropTypes.String,
+    }),
     delete: PropTypes.func,
-    feedQuery: PropTypes.func,
+    feedQuery: PropTypes.shape({
+      allEmployees: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.ID,
+        name: PropTypes.string,
+        position: PropTypes.String,
+        image: PropTypes.String,
+        phone: PropTypes.String,
+        email: PropTypes.String,
+      })),
+    }),
+    handleSubmit: PropTypes.func,
   };
+
   constructor(props) {
     super(props);
 
@@ -65,7 +85,7 @@ class Employees extends Component {
 
   executeSearch = async id => {
     const result = await this.props.client.query({
-      query: queries.SEARCH_EMPLOYEE,
+      query: SEARCH_EMPLOYEE,
       variables: { filter: id },
     });
     this.setState({
@@ -75,12 +95,12 @@ class Employees extends Component {
   };
 
   addEmployee = async values => {
-    const { name, position, phone, email } = values;
+    const { name, position, image, phone, email } = values;
     await this.props.Adding({
       variables: {
         name,
         position,
-        image: 'N/A',
+        image,
         phone,
         email,
       },
@@ -93,35 +113,34 @@ class Employees extends Component {
         });
       },
     });
+    this.props.reset();
   };
   render() {
+    const { handleSubmit } = this.props;
     const { employeeData, componentSelected } = this.state;
     return (
       <div styleName="whole">
         <div styleName="container">
           <div styleName="form">
-            <AddEmployee onSended={values => this.addEmployee(values)} />
+            <Form name="formAdd" onSubmit={handleSubmit(this.addEmployee)}>
+              <AddEmployee onSended={values => this.addEmployee(values)} invalid={this.props.invalid} />
+            </Form>
           </div>
           <div styleName="employeeslist">
             <ListEmployees onClick={id => this.executeSearch(id)} getEmployees={this.props.feedQuery} />
           </div>
           <div>
-            {(() => {
-              if (componentSelected === 'EmployeeInfo') {
-                return (
-                  <EmployeeInfo
-                    name={employeeData.name}
-                    position={employeeData.position}
-                    phone={employeeData.phone}
-                    email={employeeData.email}
-                    id={employeeData.id}
-                    img="https://i.ytimg.com/vi/AzZ4K1OzomE/maxresdefault.jpg"
-                    onClick={id => this.deleteEmployee(id)}
-                  />
-                );
-              }
-              return '';
-            })()}
+            {componentSelected && (
+              <EmployeeInfo
+                name={employeeData.name}
+                position={employeeData.position}
+                phone={employeeData.phone}
+                email={employeeData.email}
+                id={employeeData.id}
+                img={employeeData.image}
+                onClick={id => this.deleteEmployee(id)}
+              />
+            )}
           </div>
         </div>
       </div>
