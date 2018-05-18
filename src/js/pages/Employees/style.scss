@@ -6,23 +6,24 @@
     border: 1px solid $base-gray;
     padding: 3px;
     width: 565px;
-    height: 493px;
+    height: 593px;
     overflow-y: auto;
+
+    .form {
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      width: 540px;
+      height: 189px;
+    }
 
     .employeeslist {
       float: left;
+      margin-top: 10px;
       border: 1px solid $base-gray;
       padding: 3px;
       width: 258px;
-
-      .add-button {
-        padding-left: 45px;
-        padding-top: 15px;
-        button {
-          border-radius: 4px;
-          height: 30px;
-        }
-      }
     }
   }
 }

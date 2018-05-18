@@ -1,0 +1,10 @@
+mutation AddEmployee($name: String!, $position: String!, $image: String!, $phone: String!, $email: String!) {
+  createEmployee(name: $name, position: $position, image: $image, phone: $phone, email: $email) {
+    id
+    name: name
+    position: position
+    image: image
+    phone: phone
+    email: email
+  }
+}

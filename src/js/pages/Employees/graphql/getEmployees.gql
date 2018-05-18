@@ -1,0 +1,10 @@
+{
+  allEmployees {
+    id
+    name
+    position
+    image
+    phone
+    email
+  }
+}

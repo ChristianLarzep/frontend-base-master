@@ -1,6 +1,6 @@
 import { types } from '../actions/employees';
 import img from '../../empty.png';
-import { feedQuery } from '../../EmployeesList';
+import { feedQuery } from '../../Employees';
 
 const { ADD_EMPLOYEES, DELETE_EMPLOYEE, GET_EMPLOYEES, ADD_EMPLOYEES_SUCCESS, ADD_EMPLOYEES_FAIL } = types;
 

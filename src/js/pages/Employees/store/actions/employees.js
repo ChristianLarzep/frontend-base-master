@@ -21,7 +21,6 @@ export const deleteEmployee = employeeId => dispatch => {
 };
 
 export const getEmployees = data => dispatch => {
-  console.log('thedata: ', data);
   dispatch({
     type: types.GET_EMPLOYEES,
     data,

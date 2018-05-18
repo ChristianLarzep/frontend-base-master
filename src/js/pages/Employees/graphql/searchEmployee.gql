@@ -1,0 +1,10 @@
+query SeracEmployee($filter: ID) {
+  allEmployees(filter: { id: $filter }) {
+    id
+    name
+    position
+    image
+    phone
+    email
+  }
+}

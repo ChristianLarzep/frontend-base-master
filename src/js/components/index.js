@@ -13,7 +13,4 @@ export RadioButton from './RadioButton';
 export Select from './Select';
 export { Switch, SimpleSwitch } from './Switch';
 export TextField from './TextField';
-export Employee from './Employee';
-export EmployeeInfo from './EmployeeInfo';
-export AddEmployee from './AddEmployee';
 export { Tooltip, TooltipWrapper } from './Tooltip';

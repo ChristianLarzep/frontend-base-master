@@ -3,7 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
 import { user } from '../pages/App/store/reducers';
-import { employees } from '../pages/EmployeesList/store/reducers';
+import { employees } from '../pages/Employees/store/reducers';
 
 import { modal } from './reducers';
 import client from './apolloClient';

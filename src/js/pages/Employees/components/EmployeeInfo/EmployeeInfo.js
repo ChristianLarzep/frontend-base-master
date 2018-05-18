@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from '../';
+import { Button } from '../../../../components';
 
-import imageSrc from './empty.png';
+import image from './empty.png';
 
 import './style.scss';
 
 function EmployeeInfo(props) {
-  const { email, name, position, img, phone, ...others } = props;
+  const { img, name, position, phone, email, onClick } = props;
   return (
     <div styleName="container">
       <header>Employee</header>
@@ -31,7 +31,7 @@ function EmployeeInfo(props) {
           <div styleName="email">{email}</div>
         </div>
       </div>
-      <Button disabled={false} color="primary" type="submit" {...others}>
+      <Button disabled={false} color="primary" type="submit" onClick={() => onClick(props.id)}>
         Delete
       </Button>
     </div>
@@ -44,13 +44,15 @@ EmployeeInfo.propTypes = {
   name: PropTypes.string,
   phone: PropTypes.string,
   position: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 EmployeeInfo.defaultProps = {
   email: 'N/A',
-  img: imageSrc,
+  img: image,
   name: 'No disponible',
   phone: 'N/A',
   position: 'N/A',
 };
+
 export default EmployeeInfo;
