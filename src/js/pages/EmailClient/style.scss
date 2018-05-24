@@ -1,0 +1,56 @@
+html,
+body {
+  background: $light-gray;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  .container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+
+    .form {
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 2px;
+      width: 540px;
+      height: 225px;
+    }
+
+    .employeeslist {
+      float: left;
+      border-right: 1px solid $base-gray;
+      background: white;
+      width: 320px;
+      height: 100%;
+
+      ul {
+        margin: 0;
+        border-bottom: 1px solid black;
+        padding: 0;
+        overflow: hidden;
+        list-style-type: none;
+
+        .options {
+          display: block;
+          float: right;
+          border: 0;
+          background: white;
+          cursor: pointer;
+          padding: 14px 16px;
+          text-align: center;
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+
+    .email {
+      float: left;
+      width: 75%;
+      height: 100%;
+    }
+  }
+}

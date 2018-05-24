@@ -1,0 +1,12 @@
+mutation DeleteInbox($id: ID!) {
+  deleteInbox(id: $id) {
+    id
+    from
+    subject
+    body
+    tag
+    isReaded
+    deleted
+    date
+  }
+}

@@ -1,0 +1,12 @@
+{
+  allTrashes {
+    id
+    from
+    subject
+    body
+    tag
+    isReaded
+    deleted
+    date
+  }
+}

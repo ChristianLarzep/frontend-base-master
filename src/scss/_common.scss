@@ -16,3 +16,9 @@ body {
   font-stretch: normal;
   letter-spacing: normal;
 }
+
+:global {
+  #app {
+    height: 100%;
+  }
+}

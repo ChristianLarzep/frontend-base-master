@@ -1,0 +1,12 @@
+query SearchEmail($filter: ID) {
+  allInboxes(filter: { id: $filter }) {
+    id
+    from
+    subject
+    body
+    tag
+    isReaded
+    deleted
+    date
+  }
+}

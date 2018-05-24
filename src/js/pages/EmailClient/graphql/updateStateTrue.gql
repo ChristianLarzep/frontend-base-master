@@ -1,0 +1,12 @@
+mutation updateisReadedTrue($id: ID!) {
+  updateInbox(id: $id, isReaded: true) {
+    id
+    from
+    subject
+    body
+    tag
+    isReaded
+    deleted
+    date
+  }
+}

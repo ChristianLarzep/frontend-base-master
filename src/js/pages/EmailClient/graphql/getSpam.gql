@@ -1,0 +1,13 @@
+{
+  allSpams {
+    body
+    tag
+    subject
+    id
+    date
+    from
+    to
+    deleted
+    isReaded
+  }
+}

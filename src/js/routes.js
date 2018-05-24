@@ -7,6 +7,7 @@ import App from './pages/App';
 import Apollo from './pages/Apollo';
 import Login from './pages/Login';
 import Employees from './pages/Employees';
+import EmailClient from './pages/EmailClient';
 
 export default params => (
   <ConnectedRouter history={params.history}>
@@ -15,6 +16,7 @@ export default params => (
       <Route path="/apollo" component={Apollo} />
       <Route path="/login" component={Login} />
       <Route path="/employees" component={Employees} />
+      <Route path="/email" component={EmailClient} />
       <Route path="/" component={DemoPage} />
     </Switch>
   </ConnectedRouter>

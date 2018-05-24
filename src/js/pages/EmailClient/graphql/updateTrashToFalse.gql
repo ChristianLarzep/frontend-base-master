@@ -1,0 +1,12 @@
+mutation updateisReadedFalse($id: ID!) {
+  updateTrash(id: $id, isReaded: false) {
+    id
+    from
+    subject
+    body
+    tag
+    isReaded
+    deleted
+    date
+  }
+}

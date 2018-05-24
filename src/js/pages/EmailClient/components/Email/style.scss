@@ -1,0 +1,98 @@
+.open {
+  border-right: 1px solid black;
+  border-bottom: 1px solid $base-gray;
+  border-left: 4px solid #4990e2;
+  background: #f9f9f9;
+  cursor: pointer;
+  padding: 15px;
+  width: 320px;
+  height: 80px;
+
+  .data-container {
+    margin-left: 15px;
+    font-family: 'Helvetica';
+    font-size: 12px;
+
+    .icon {
+      margin-right: 5px;
+    }
+
+    .tag {
+      font-weight: bold;
+    }
+
+    .date {
+      float: right;
+      color: $base-gray;
+      font-size: 10px;
+    }
+
+    .subject {
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      .unreaded {
+        float: left;
+        margin-right: 10px;
+        margin-left: -18px;
+        border-radius: 50%;
+        background: #4990e2;
+        width: 9px;
+        height: 9px;
+      }
+    }
+
+    .body {
+      color: $base-gray;
+    }
+  }
+}
+
+.close {
+  border-bottom: 1px solid $base-gray;
+  cursor: pointer;
+  padding: 15px;
+  width: 320px;
+  height: 80px;
+
+  .data-container {
+    margin-left: 15px;
+    font-family: 'Helvetica';
+    font-size: 12px;
+
+    .icon {
+      margin-right: 5px;
+    }
+
+    .tag {
+      font-weight: bold;
+    }
+
+    .date {
+      float: right;
+      color: $base-gray;
+      font-size: 10px;
+    }
+
+    .subject {
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      .unreaded {
+        float: left;
+        margin-right: 10px;
+        margin-left: -18px;
+        border-radius: 50%;
+        background: #4990e2;
+        width: 9px;
+        height: 9px;
+      }
+    }
+
+    .body {
+      color: $base-gray;
+    }
+  }
+}
+
+//https://askubuntu.com/questions/508934/how-to-install-libpng-and-zlib

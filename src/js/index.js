@@ -11,22 +11,6 @@ import '../scss/common.scss';
 import Routes from './routes';
 import Store from './store';
 
-client
-  .query({
-    query: gql`
-      {
-        allEmployees {
-          id
-          name
-          position
-          image
-          phone
-          email
-        }
-      }
-    `,
-  })
-  .then(({ data }) => console.log({ data }));
 render(
   <Provider store={Store}>
     <ApolloProvider client={client}>

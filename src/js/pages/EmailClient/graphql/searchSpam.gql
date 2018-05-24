@@ -1,0 +1,12 @@
+query SearchSpam($filter: ID) {
+  allSpams(filter: { id: $filter }) {
+    id
+    from
+    subject
+    body
+    tag
+    isReaded
+    deleted
+    date
+  }
+}

@@ -1,0 +1,28 @@
+mutation moveToTrash(
+  $from: String!
+  $subject: String!
+  $body: String!
+  $tag: String!
+  $isReaded: Boolean!
+  $deleted: Boolean!
+  $date: String!
+) {
+  createTrash(
+    from: $from
+    subject: $subject
+    body: $body
+    tag: $tag
+    isReaded: $isReaded
+    deleted: $deleted
+    date: $date
+  ) {
+    id
+    from
+    subject
+    body
+    tag
+    isReaded
+    deleted
+    date
+  }
+}
